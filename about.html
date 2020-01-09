@@ -1,0 +1,140 @@
+---
+layout: page
+title: "About"
+description: "Hey, this is BY."
+header-img: "img/post-bg-rwd.jpg"
+---
+
+<!-- Language Selector -->
+<!-- <select class="sel-lang" onchange= "onLanChange(this.options[this.options.selectedIndex].value)">
+    <option value="0" selected> 中文 Chinese </option>
+    <option value="1"> 英文 English </option>
+</select> -->
+
+<!-- Chinese Version -->
+<div class="zh post-container">
+
+    <!--copied from markdown -->
+    <h2 id="toc_0"><a name="toc_0" class="vnote-anchor" href="#"></a>释名</h2>
+	<p><code>容</code>可拆做<code>宀谷</code>二字，即如<code>金庸</code>之于查良镛的<code>镛</code>。<code>宀</code>音<code>mian2</code>，<code>丏</code>音<code>mian3</code>。然<code>宀</code>字笔画稀少，又生僻，且<code>宀谷</code>二字除组成一个<code>容</code>字之外，别无任何悬念，所以不免显得单薄、滑稽。故以<code>丏</code>代之。</p>
+	<p>《说文》曰：丏，象壅蔽之形。丏者，所以御矢也。故，丏谷不啻为桃源。我遇到过许多有趣的人，他们或许天真烂漫地与世界格格不入着、或许面露鄙夷地从世界出走着、或许冷冷地同世界若即若离着，或许在世界之外热切又好奇地观察着。他们和世界的关系是不可能断绝的，但是他们可能并不喜欢永远被限制在世界里，那么丏谷愿意成为其庇护或者临时的逆旅。</p>
+	<p>可悲的是，<code>丏谷</code>终归是<code>谷</code>，其本身是空的，假如没有人经过或者居住，那么它空得就很无用了。</p>
+	<h2 id="toc_1"><a name="toc_1" class="vnote-anchor" href="#"></a>关于我</h2>
+	<p>我是<code>张天容</code>，就读于上海交通大学和密西根大学，学习电子与计算机工程和计算机科学。同时也喜欢涉猎其他学科，比如物理、化学、生物、哲学、语言学等。练习硬笔书法，非常喜欢赵孟頫的字。对古文有着奇怪的好感，相比于诗，更中意词。会去健身房撸铁，但是相当排斥有氧运动。平时既不看书也不怎么玩游戏，可以说是非常无趣的人了。意识到这一点之后，我一直都在尝试着建立起一些正常的业余活动的习惯，比如尝试着学习音乐鉴赏、从头开始阅读世界经典名著等。其实我本来应该是一个很幽默的人，甚至有想过说相声、演小品，但是近来越来越丧失了这种能力，关于这一点，我也在尽力挽回。</p>
+	<h2 id="toc_2"><a name="toc_2" class="vnote-anchor" href="#"></a>博客的内容</h2>
+	<p>我建立这个博客并没有明确的目的，几个月前曾经跟朋友提到过有意建博客，前两天看见某同学的个人主页，于是这个博客就在闲的没事干之际诞生了。在<code>百度统计</code>上登记时就因为选择<code>博客</code>必须同时标注子类，但是发现没有一个合适而最终干脆写了<code>其他</code>用途。我主要会在这里记录自己学习的笔记（可能是有关计算机的也可能是任何我一时兴起开始学习的玩意儿）、网上收集到的一些有趣知识或者资源，也会在这里发发牢骚，描述一下生活里发生的琐事和心情上的变化。其实现在说说仿佛自己会很高产，到时候可能会变成半年刊这样。</p>
+    <p></p>
+    
+</div>
+
+<!-- English Version -->
+<!-- <div class="en post-container">
+    <blockquote><p>Yet another iOS Developer. <br>
+    Yet another Life-long Student.</p></blockquote>
+
+    <p>Hi, I am <strong>Baiying Qiu</strong>，you can call me <strong>BY</strong>. I am an iOS software engineer and currently working in Xiamen</p>
+
+    <p>This is my personal blog, through making Github Pages and Jekyll.My GitHub  👉 <a href="http://github.com/qiubaiying">Github·BY</a>.</p>
+    
+    <p>I am a sports enthusiast, I like fitness, running and boxing.</p>
+
+    <h5>Talks</h5>
+
+    <ul>
+    <li><a href="https://github.com">GitHub</a></li>
+    <li><a href="http://jekyll.com.cn/">jekyll</a></li>
+    <li><a href="https://pages.github.com/">GitHub Pages</a></li>
+    <li><a href="https://qiubaiying.github.io">BY</a></li>
+    </ul>
+</div> -->
+
+<!-- Handle Language Change -->
+<script type="text/javascript">
+    // get nodes
+    var $zh = document.querySelector(".zh");
+    var $en = document.querySelector(".en");
+    var $select = document.querySelector("select");
+
+    // bind hashchange event
+    window.addEventListener('hashchange', _render);
+
+    // handle render
+    function _render(){
+        var _hash = window.location.hash;
+        // en
+        if(_hash == "#en"){
+            $select.selectedIndex = 1;
+            $en.style.display = "block";
+            $zh.style.display = "none";
+        // zh by default
+        }else{
+            // not trigger onChange, otherwise cause a loop call.
+            $select.selectedIndex = 0;
+            $zh.style.display = "block";
+            $en.style.display = "none";
+        }
+    }
+
+    // handle select change
+    function onLanChange(index){
+        if(index == 0){
+            window.location.hash = "#zh"
+        }else{
+            window.location.hash = "#en"
+        }
+    }
+
+    // init
+    _render();
+</script>
+
+
+{% comment %}
+<!-- Gitalk 评论 start  -->
+{% if site.gitalk.enable %}
+<!-- Gitalk link  -->
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script>
+
+<div id="gitalk-container"></div>
+    <script type="text/javascript">
+    var gitalk = new Gitalk({
+    clientID: '{{site.gitalk.clientID}}',
+    clientSecret: '{{site.gitalk.clientSecret}}',
+    repo: '{{site.gitalk.repo}}',
+    owner: '{{site.gitalk.owner}}',
+    admin: ['{{site.gitalk.admin}}'],
+    distractionFreeMode: {{site.gitalk.distractionFreeMode}},
+    id: 'about',
+    });
+    gitalk.render('gitalk-container');
+</script>
+{% endif %}
+{% endcomment %}
+<!-- Gitalk end -->
+
+ <!-- disqus 评论框 start  -->
+{% if site.disqus.enable %}
+
+<div class="comment">
+    <div id="disqus_thread" class="disqus-thread">
+    </div>
+</div>
+<!-- disqus 评论框 end -->
+
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "{{site.disqus.username}}";
+    var disqus_identifier = "{{site.disqus.username}}/{{page.url}}";
+    var disqus_url = "{{site.url}}{{page.url}}";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus 公共JS代码 end -->
+{% endif %}
+
