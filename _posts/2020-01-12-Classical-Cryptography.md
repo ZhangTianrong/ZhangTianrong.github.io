@@ -1,14 +1,14 @@
 ---
-layout:		post
-title:		Cryptography in History
-subtitle:	Cryptography-Course-Note-1
-date:		2020-01-12
-author:     Miangu
-catalog:	true
+layout:         post
+title:          Cryptography in History
+subtitle:       Cryptography-Course-Note-1
+date:           2020-01-12
+author:        Miangu
+catalog:       true
 tags:
 	- CourseNote
-	- Cryptography
-	- English
+    - Cryptography
+    - English
 ---
 
 ## Introduction
