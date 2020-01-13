@@ -3,6 +3,7 @@ layout:		post
 title:		Cryptography in History
 subtitle:	Cryptography-Course-Note-1
 date:		2020-01-12
+author:     Miangu
 catalog:	true
 tags:
 	- CourseNote
@@ -36,7 +37,7 @@ There are three primary arguments in favor of Kerchoff's principle:
 
 ### Caesar's cipher and Sufficient Key-Space Principle
 
-The original Caesar's cipher is known as ROT-3 in that it shifts the alphabet order by 3 positions. ROT-3 itself doesn't even have a key, which makes it decryptable effortlessly as long as one knows the algorithm. As a keyed generalization of Caesars's cipher, shift cipher apply ROT-$k$ based on the generated key $k$. However, shift cipher is not much safer than Caesar's. $|\mathcal{K}|$ is as small as $26$ for example in English. This makes an exhaustive-search well affordable. Hence, to further evaluate a encryption scheme, we introduce the following principle:
+The original Caesar's cipher is known as ROT-3 in that it shifts the alphabet order by 3 positions. ROT-3 itself doesn't even have a key, which makes it decryptable effortlessly as long as one knows the algorithm. As a keyed generalization of Caesars's cipher, shift cipher apply ROT-$k$ based on the generated key $k$. However, shift cipher is not much safer than Caesar's. $\|\mathcal{K}\|$ is as small as $26$ for example in English. This makes an exhaustive-search well affordable. Hence, to further evaluate a encryption scheme, we introduce the following principle:
 
 > Any secure encryption scheme must have a key space that is sufficiently large to make exhaustive-search attack infeasible.
 
@@ -69,8 +70,6 @@ Recall how we solve the [repeating and non-overlapping substring problem](https:
 The famous Enigma code used by German in WWⅡ can be thought of as an extended and modified version of Vigenere cipher. [Here](https://www.youtube.com/watch?v=mcX7iO_XCFA) is a video about the inner wiring of Enigma machines
 
 <iframe width="560" height="315" align="middle" src="https://www.youtube.com/embed/mcX7iO_XCFA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
 and [this](https://www.youtube.com/watch?v=V4V2bpZlqx8) other video discusses the flaw in Enigma code
 
 <iframe width="560" height="315" align="middle" src="https://www.youtube.com/embed/G2_Q9FoD-oQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
