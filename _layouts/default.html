@@ -7,8 +7,10 @@
 <!-- hack iOS CSS :active style -->
 <body ontouchstart="">
 
+    {% if page.url != "/profile/" %}
     {% include nav.html %}
-
+    {% endif %}
+    
     {{ content }}
 
     {% include footer.html %}
