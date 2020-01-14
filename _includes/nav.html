@@ -24,9 +24,11 @@
                         <a href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a>
                     </li>
                     {% endif %}{% endfor %}
+                    {% comment %}
                     <li>
                         <a href="{{ site.baseurl }}/profile/">Profile</a>
                     </li>
+                    {% endcomment %}
                 </ul>
             </div>
         </div>
