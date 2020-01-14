@@ -1,20 +1,32 @@
 ---
-layout: page
-title: "Profile"
-description: "Hey, this is BY."
-header-img: "img/post-bg-rwd.jpg"
+layout: default
+title: "Tianrong Zhang | 张天容"
+header-img: "img/tag-bg.jpg"
 ---
 
-<!-- Language Selector -->
-<!-- <select class="sel-lang" onchange= "onLanChange(this.options[this.options.selectedIndex].value)">
-    <option value="0" selected> 中文 Chinese </option>
-    <option value="1"> 英文 English </option>
-</select> -->
+<header class="intro-header" style="background-image: url('{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="site-heading" id="tag-heading">
+                    <h1 style="font-size: 50px;">{{ page.title }}</h1 c>
+                    <span class="subheading">{{ page.description }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="container">
+<div class="row">
+Language 语言: 
+<select class="sel-lang" onchange= "onLanChange(this.options[this.options.selectedIndex].value)">
+    <option value="0"> Chinese 中文 </option>
+    <option value="1" selected> English 英文 </option>
+</select>
 
 <!-- Chinese Version -->
 <div class="zh post-container">
 
-    <!--copied from markdown -->
     <h2 id="toc_0"><a name="toc_0" class="vnote-anchor" href="#"></a>释名</h2>
 	<p><code>容</code>可拆做<code>宀谷</code>二字，即如<code>金庸</code>之于查良镛的<code>镛</code>。<code>宀</code>音<code>mian2</code>，<code>丏</code>音<code>mian3</code>。然<code>宀</code>字笔画稀少，又生僻，且<code>宀谷</code>二字除组成一个<code>容</code>字之外，别无任何悬念，所以不免显得单薄、滑稽。故以<code>丏</code>代之。</p>
 	<p>《说文》曰：丏，象壅蔽之形。丏者，所以御矢也。故，丏谷不啻为桃源。我遇到过许多有趣的人，他们或许天真烂漫地与世界格格不入着、或许面露鄙夷地从世界出走着、或许冷冷地同世界若即若离着，或许在世界之外热切又好奇地观察着。他们和世界的关系是不可能断绝的，但是他们可能并不喜欢永远被限制在世界里，那么丏谷愿意成为其庇护或者临时的逆旅。</p>
@@ -27,8 +39,7 @@ header-img: "img/post-bg-rwd.jpg"
     
 </div>
 
-<!-- English Version -->
-<!-- <div class="en post-container">
+<div class="en post-container">
     <blockquote><p>Yet another iOS Developer. <br>
     Yet another Life-long Student.</p></blockquote>
 
@@ -46,8 +57,9 @@ header-img: "img/post-bg-rwd.jpg"
     <li><a href="https://pages.github.com/">GitHub Pages</a></li>
     <li><a href="https://qiubaiying.github.io">BY</a></li>
     </ul>
-</div> -->
-
+</div>
+</div>
+</div>
 <!-- Handle Language Change -->
 <script type="text/javascript">
     // get nodes
