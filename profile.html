@@ -4,12 +4,29 @@ title: "Tianrong Zhang | 张天容"
 header-img: "img/tag-bg.jpg"
 ---
 
+<script type="text/javascript">
+    window.onload = function() {
+        if( navigator.userAgent.match(/Android/i)
+        || navigator.userAgent.match(/webOS/i)
+        || navigator.userAgent.match(/iPhone/i)
+        || navigator.userAgent.match(/iPad/i)
+        || navigator.userAgent.match(/iPod/i)
+        || navigator.userAgent.match(/BlackBerry/i)
+        || navigator.userAgent.match(/Windows Phone/i)
+        ){
+            document.getElementById('profile_title').innerHTML = "Tianrong Zhang";
+        }else{  
+            document.getElementById('profile_title').innerHTML = "Tianrong Zhang | 张天容";
+        }
+    }; 
+</script>
+
 <header class="intro-header" style="background-image: url('{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}')">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <div class="site-heading" id="tag-heading">
-                    <h1 style="font-size: 50px;">{{ page.title }}</h1 c>
+                    <h1 id="profile_title" style="font-size: 50px;"></h1>
                     <span class="subheading">{{ page.description }}</span>
                 </div>
             </div>
@@ -17,7 +34,7 @@ header-img: "img/tag-bg.jpg"
     </div>
 </header>
 <div class="container">
-<div class="row">
+<div class="row" id="profile_div" style="margin-left: auto; margin-right: auto;">
 Language 语言: 
 <select class="sel-lang" onchange= "onLanChange(this.options[this.options.selectedIndex].value)">
     <option value="0"> Chinese 中文 </option>
