@@ -5,6 +5,7 @@ header-img: "img/tag-bg.jpg"
 ---
 
 <script type="text/javascript">
+    var isMobile = false;
     window.onload = function() {
         if( navigator.userAgent.match(/Android/i)
         || navigator.userAgent.match(/webOS/i)
@@ -15,10 +16,27 @@ header-img: "img/tag-bg.jpg"
         || navigator.userAgent.match(/Windows Phone/i)
         ){
             document.getElementById('profile_title').innerHTML = "Tianrong Zhang";
+            document.addEventListener("scroll",function () {  
+                var scrolllenth=document.getElementById("profile_title").getBoundingClientRect().top;
+                if (scrolllenth >= 70)
+                    document.getElementsByClassName("lan-changer")[0].style.opacity=1; 
+                else if (scrolllenth < 70 && scrolllenth > -150)
+                    document.getElementsByClassName("lan-changer")[0].style.opacity=1+scrolllenth/150;
+                else
+                document.getElementsByClassName("lan-changer")[0].style.opacity=0;})
         }else{  
             document.getElementById('profile_title').innerHTML = "Tianrong Zhang | 张天容";
+            css = ".lan-changer { opacity: 0; transition: opacity .25s ease-in-out; -moz-transition: opacity .25s ease-in-out; -webkit-transition: opacity .25s ease-in-out;} .lan-changer:hover {opacity: 1;}";
+            var style = document.createElement('style');
+            if (style.styleSheet) {
+                style.styleSheet.cssText = css;
+            } else {
+                style.appendChild(document.createTextNode(css));
+            }
+            document.getElementsByTagName('head')[0].appendChild(style);
         }
-    }; 
+    };
+    
 </script>
 
 <header class="intro-header" style="background-image: url('{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}')">
@@ -35,11 +53,15 @@ header-img: "img/tag-bg.jpg"
 </header>
 <div class="container">
 <div class="row" id="profile_div" style="margin-left: auto; margin-right: auto;">
-Language 语言: 
-<select class="sel-lang" onchange= "onLanChange(this.options[this.options.selectedIndex].value)">
-    <option value="0"> Chinese 中文 </option>
-    <option value="1" selected> English 英文 </option>
-</select>
+    
+    <!--- This is the language selection box -->
+    <div class="lan-changer">
+    Language 语言: 
+    <select class="sel-lang" onchange= "onLanChange(this.options[this.options.selectedIndex].value)">
+        <option value="0"> Chinese 中文 </option>
+        <option value="1" selected> English 英文 </option>
+    </select>
+    </div>
 
 <!-- Chinese Version -->
 <div class="zh post-container">
