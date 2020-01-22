@@ -31,7 +31,7 @@ header-img: "img/tag-bg.jpg"
                 document.getElementsByClassName("lan-changer")[0].style.opacity=0;})
         }else{  
             document.getElementById('profile_title').innerHTML = "Tianrong Zhang | 张天容";
-            css = ".lan-changer { height:0px; opacity: 0; transition: opacity .25s ease-in-out; -moz-transition: opacity .8s ease-in-out; -webkit-transition: opacity .8s ease-in-out; -webkit-transition: height .45s;} .lan-changer:hover {opacity: 1; height: 30px}";
+            css = ".lan-changer { height:0px; opacity: 0; transition: opacity .25s ease-in-out; -moz-transition: opacity .8s ease-in-out; -webkit-transition: height .45s ease-in-out, opacity .8s ease-in-out;} .lan-changer:hover {opacity: 1; height: 30px}";
             var style = document.createElement('style');
             if (style.styleSheet) {
                 style.styleSheet.cssText = css;
