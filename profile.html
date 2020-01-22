@@ -24,14 +24,14 @@ header-img: "img/tag-bg.jpg"
                     document.getElementsByClassName("lan-changer")[0].style.opacity=1; 
                 else if (scrolllenth < 70 && scrolllenth > -100)
                     {
-                        document.getElementsByClassName("lan-changer")[0].style.opacity=1+(scrolllenth-70)/100;
-                        document.getElementsByClassName("lan-changer")[0].style.height="" + (30*(1+(scrolllenth-70)/100)) +"px"; 
+                        document.getElementsByClassName("lan-changer")[0].style.opacity=1+(scrolllenth-70)/170;
+                        document.getElementsByClassName("lan-changer")[0].style.height="" + (30*(0.5-Math.cos(Math.PI*(1+(scrolllenth-70)/170))/2)) +"px"; 
                     }
                 else
                 document.getElementsByClassName("lan-changer")[0].style.opacity=0;})
         }else{  
             document.getElementById('profile_title').innerHTML = "Tianrong Zhang | 张天容";
-            css = ".lan-changer { height:0px; opacity: 0; transition: opacity .25s ease-in-out; -moz-transition: opacity .8s ease-in-out; -webkit-transition: height .45s ease-in-out, opacity .8s ease-in-out;} .lan-changer:hover {opacity: 1; height: 30px}";
+            css = ".lan-changer { height:0px; opacity: 0; transition: height .45s ease-in-out, opacity 1s ease-in-out; -moz-transition: height .45s ease-in-out, opacity 1s ease-in-out; -webkit-transition: height .45s ease-in-out, opacity 1s ease-in-out;} .lan-changer:hover {opacity: 1; height: 30px}";
             var style = document.createElement('style');
             if (style.styleSheet) {
                 style.styleSheet.cssText = css;
@@ -145,53 +145,4 @@ header-img: "img/tag-bg.jpg"
     _render();
 </script>
 
-
-{% comment %}
-<!-- Gitalk 评论 start  -->
-{% if site.gitalk.enable %}
-<!-- Gitalk link  -->
-<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
-<script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script>
-
-<div id="gitalk-container"></div>
-    <script type="text/javascript">
-    var gitalk = new Gitalk({
-    clientID: '{{site.gitalk.clientID}}',
-    clientSecret: '{{site.gitalk.clientSecret}}',
-    repo: '{{site.gitalk.repo}}',
-    owner: '{{site.gitalk.owner}}',
-    admin: ['{{site.gitalk.admin}}'],
-    distractionFreeMode: {{site.gitalk.distractionFreeMode}},
-    id: 'about',
-    });
-    gitalk.render('gitalk-container');
-</script>
-{% endif %}
-{% endcomment %}
-<!-- Gitalk end -->
-
- <!-- disqus 评论框 start  -->
-{% if site.disqus.enable %}
-
-<div class="comment">
-    <div id="disqus_thread" class="disqus-thread">
-    </div>
-</div>
-<!-- disqus 评论框 end -->
-
-<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
-<script type="text/javascript">
-    /* * * CONFIGURATION VARIABLES * * */
-    var disqus_shortname = "{{site.disqus.username}}";
-    var disqus_identifier = "{{site.disqus.username}}/{{page.url}}";
-    var disqus_url = "{{site.url}}{{page.url}}";
-
-    (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
-</script>
-<!-- disqus 公共JS代码 end -->
-{% endif %}
 
