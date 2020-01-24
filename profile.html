@@ -4,63 +4,28 @@ title: "Tianrong Zhang | 张天容"
 header-img: "img/tag-bg.jpg"
 ---
 
-<script type="text/javascript">
-    var isMobile = false;
-    window.onload = function() {
-        if( navigator.userAgent.match(/Android/i)
-        || navigator.userAgent.match(/webOS/i)
-        || navigator.userAgent.match(/iPhone/i)
-        || navigator.userAgent.match(/iPad/i)
-        || navigator.userAgent.match(/iPod/i)
-        || navigator.userAgent.match(/BlackBerry/i)
-        || navigator.userAgent.match(/Windows Phone/i)
-        ){
-            document.getElementById('profile_title').innerHTML = "Tianrong Zhang";
-            document.getElementsByClassName("lan-changer")[0].style.display = "block";
-            document.getElementsByClassName("lan-changer")[0].style.height="30px"; 
-            document.addEventListener("scroll",function () {  
-                var scrolllenth=document.getElementById("profile_title").getBoundingClientRect().top;
-                if (scrolllenth >= 70)
-                    document.getElementsByClassName("lan-changer")[0].style.opacity=1; 
-                else if (scrolllenth < 70 && scrolllenth > -100)
-                    {
-                        document.getElementsByClassName("lan-changer")[0].style.opacity=1+(scrolllenth-70)/170;
-                        document.getElementsByClassName("lan-changer")[0].style.height="" + (30*(0.5-Math.cos(Math.PI*(1+(scrolllenth-70)/170))/2)) +"px"; 
-                    }
-                else
-                document.getElementsByClassName("lan-changer")[0].style.opacity=0;})
-        }else{  
-            document.getElementById('profile_title').innerHTML = "Tianrong Zhang | 张天容";
-            css = ".lan-changer { height:0px; opacity: 0; transition: height .45s ease-in-out, opacity 1s ease-in-out; -moz-transition: height .45s ease-in-out, opacity 1s ease-in-out; -webkit-transition: height .45s ease-in-out, opacity 1s ease-in-out;} .lan-changer:hover {opacity: 1; height: 30px}";
-            var style = document.createElement('style');
-            if (style.styleSheet) {
-                style.styleSheet.cssText = css;
-            } else {
-                style.appendChild(document.createTextNode(css));
-            }
-            document.getElementsByTagName('head')[0].appendChild(style);
-            document.getElementsByClassName("lan-changer")[0].style.display = "block";
-        }
-    };
-    
-</script>
-
+<!-- Page Header: Image banner and text on it-->
 <header class="intro-header" style="background-image: url('{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}')">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <div class="site-heading" id="tag-heading">
                     <h1 id="profile_title" style="font-size: 50px;"></h1>
+                    <!--- Subheading unused for now
                     <span class="subheading">{{ page.description }}</span>
+                    !-->
                 </div>
             </div>
         </div>
     </div>
 </header>
-<div class="container">
+
+<!--- The container of content body -->
+<div class="c_container">
 <div class="row" id="profile_div" style="margin-left: auto; margin-right: auto;">
     
     <!--- This is the language selection box -->
+    <!-- Animation handler is defined at the end of the file -->
     <div class="lan-changer" style="display:none;">
     Language 语言: 
     <select class="sel-lang" onchange= "onLanChange(this.options[this.options.selectedIndex].value)" style="box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2); -webkit-appearance: button; appearance: button; outline: none;">
@@ -69,40 +34,201 @@ header-img: "img/tag-bg.jpg"
     </select>
     </div>
 
-<!-- Chinese Version -->
-<div class="zh post-container">
+    <!-- Chinese Version -->
+    <div class="zh post-container">
+        <section id="about-me">
+            <div class="section-title">
+                <img src="../img/profile-img.JPG" style="width: 90%; margin: 0em 0em 0em 0em; display: none;" id="img" >
+                <span style="display: none;" id="img-replace">Profile</span>
+            </div>
+            <div class="section-content">
+                <div class="block">
+                    <div class="block-content">
+                        <p>I am Tianrong Zhang, Bachelor in Computer Science and Electrical and Computer Engineering. I received my degrees from <a href="https://cse.engin.umich.edu/">University of Michigan College of Engineering</a> and <a href="http://umji.sjtu.edu.cn/">Shanghai Jiao Tong University - University of Michigan Joint Institute</a>. </p>
+                        <p>Currently, I am in pursuit of research career in Natural Language Processing, with a focus on language grounding. This area of research also include topics such as situated language and emergence of language.</p> 
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <h2 id="toc_0"><a name="toc_0" class="vnote-anchor" href="#"></a>释名</h2>
-	<p><code>容</code>可拆做<code>宀谷</code>二字，即如<code>金庸</code>之于查良镛的<code>镛</code>。<code>宀</code>音<code>mian2</code>，<code>丏</code>音<code>mian3</code>。然<code>宀</code>字笔画稀少，又生僻，且<code>宀谷</code>二字除组成一个<code>容</code>字之外，别无任何悬念，所以不免显得单薄、滑稽。故以<code>丏</code>代之。</p>
-	<p>《说文》曰：丏，象壅蔽之形。丏者，所以御矢也。故，丏谷不啻为桃源。我遇到过许多有趣的人，他们或许天真烂漫地与世界格格不入着、或许面露鄙夷地从世界出走着、或许冷冷地同世界若即若离着，或许在世界之外热切又好奇地观察着。他们和世界的关系是不可能断绝的，但是他们可能并不喜欢永远被限制在世界里，那么丏谷愿意成为其庇护或者临时的逆旅。</p>
-	<p>可悲的是，<code>丏谷</code>终归是<code>谷</code>，其本身是空的，假如没有人经过或者居住，那么它空得就很无用了。</p>
-	<h2 id="toc_1"><a name="toc_1" class="vnote-anchor" href="#"></a>关于我</h2>
-	<p>我是<code>张天容</code>，就读于上海交通大学和密西根大学，学习电子与计算机工程和计算机科学。同时也喜欢涉猎其他学科，比如物理、化学、生物、哲学、语言学等。练习硬笔书法，非常喜欢赵孟頫的字。对古文有着奇怪的好感，相比于诗，更中意词。会去健身房撸铁，但是相当排斥有氧运动。平时既不看书也不怎么玩游戏，可以说是非常无趣的人了。意识到这一点之后，我一直都在尝试着建立起一些正常的业余活动的习惯，比如尝试着学习音乐鉴赏、从头开始阅读世界经典名著等。其实我本来应该是一个很幽默的人，甚至有想过说相声、演小品，但是近来越来越丧失了这种能力，关于这一点，我也在尽力挽回。</p>
-	<h2 id="toc_2"><a name="toc_2" class="vnote-anchor" href="#"></a>博客的内容</h2>
-	<p>我建立这个博客并没有明确的目的，几个月前曾经跟朋友提到过有意建博客，前两天看见某同学的个人主页，于是这个博客就在闲的没事干之际诞生了。在<code>百度统计</code>上登记时就因为选择<code>博客</code>必须同时标注子类，但是发现没有一个合适而最终干脆写了<code>其他</code>用途。我主要会在这里记录自己学习的笔记（可能是有关计算机的也可能是任何我一时兴起开始学习的玩意儿）、网上收集到的一些有趣知识或者资源，也会在这里发发牢骚，描述一下生活里发生的琐事和心情上的变化。其实现在说说仿佛自己会很高产，到时候可能会变成半年刊这样。</p>
-    <p></p>
-    
-</div>
+        <!-- Section about higher education history -->
+        <section id="education">
+            <div class="section-title">
+            Education
+            </div>
+            <div class="section-content">
+            
+            <div class="block">
+                <div class="block-title">
+                University of Michigan
+                </div>
+                <div class="block-subtitle">
+                Sep 2018 - Now | Bachelor of Science in Engineering | Computer Science
+                </div>
+                <div class="block-content">
+                <strong>GPA</strong>: 3.83/4.00<br>
+                <strong>Major Courses</strong>:<br>
+                <ul class="course-list">
+                    <li>Coding & Information Theory</li> 
+                    <li>Bayes Data Analysis</li>
+                    <li>Database Management System</li>
+                    <li>Introduction to Algorithms</li>
+                    <li>Introduction to Machine Learning</li>
+                    <li>Deep Learning for Vision</li>
+                    <li>Natrual Language Processing</li>
+                    <li>Situated Language for Embodied AI</li>
+                    <li>Compiler Construction</li>
+                    <li>Computer Architecture</li>
+                </ul>
+                <strong>Remarks</strong>:
+                <ul>
+                    <li>University Honors</li>
+                    <li>Dean's List</li>
+                </ul>
+                </div>
+            </div>
+            
+            <div class="block">
+                <div class="block-title">
+                Shanghai Jiao Tong University
+                </div>
+                <div class="block-subtitle">
+                Sep 2016 - Now | Bachelor of Engineering | Electrical and Computer Engineering
+                </div>
+                <div class="block-content">
+                    <strong>GPA</strong>: 3.01/4.00<br>
+                    <strong>Major Courses</strong>:<br>
+                    <ul class="course-list">
+                        <li>Modern Physics</li> 
+                        <li>Bayes Data Analysis</li>
+                        <li>Database Management System</li>
+                        <li>Introduction to Algorithms</li>
+                        <li>Introduction to Machine Learning</li>
+                        <li>Deep Learning for Vision</li>
+                        <li>Natrual Language Processing</li>
+                        <li>Situated Language for Embodied AI</li>
+                        <li>Compiler Construction</li>
+                        <li>Computer Architecture</li>
+                    </ul>
+                    <strong>Remarks</strong>:
+                    <ul>
+                        <li>University Honors</li>
+                        <li>Dean's List</li>
+                    </ul>
+                </div>
+            </div>
+            
+            </div>
+        </section>
 
-<div class="en post-container">
-    <blockquote><p>Yet another iOS Developer. <br>
-    Yet another Life-long Student.</p></blockquote>
+        <section id="experience">
+            <div class="section-title">
+                Research Experience
+            </div>
+            <div class="section-content">
+                <div class="block">
+                    <div class="block-title">
+                        EAGLe Lab, UMich
+                    </div>
+                    <div class="block-subtitle">
+                        Sep 2019 - Now | Undergraduate Research Assistant
+                    </div>
+                    <div class="block-content">
+                        <p>Embodied Agent & Grounded LanguagE Laboratory (EAGLE) is a new founded laboratory led by <a href="https://web.eecs.umich.edu/~chaijy/">Prof. Joyce Chai</a> at University of Michigan. The lab webpage is still under construction. The lab focuses on language grounding as well as the embodiment of AIs and is now actively seeking for extraordinary and most importantly pattern-changing topics. As a founding member, I am engaged in forming research ideas and reviewing related works.</p>
+                        <div class="project-item-odd">
+                        <p>
+                        <p class='project-title'><strong>Missing Step Inference in Procedural Text (Undergoing)</strong></p>
+                        <p class='project-author'>Tianrong Zhang, Tianchun Huang, Shujie Yang</p>
+                        Procedural text roughly resembles step decomposition of the execution of a task. The ability to complete the missing part of the procedure manifests the model's ability to reason about the causality between steps. We propose utilizing BERT-GPT2 auto-encoding scheme to predicted the abridged part of the text. The model can take image/video/knowledge graph information as external source to which the lexicons in the text are grounded.
+                        </p>
+                        </div>
+                </div>
+              
+                <div class="block">
+                    <div class="block-title">
+                        <a href="https://speechlab.sjtu.edu.cn/">Speech Lab, SJTU</a>
+                    </div>
+                    <div class="block-subtitle">
+                        May 2019 - August 2019 | Undergraduate Research Intern
+                    </div>
+                    <div class="block-content">
+                        I worked on incorporating graph neural network into a slot tagger to make use of the statistical relation between slots and tags. This is supposed to improve data efficiency and cold-start performances. The project has been passed on succeeding membernces.
+                    </div>
+                </div>  
+            </div>
+        </section>
+        
+        <section id="experience">
+            <div class="section-title">
+                Teaching Working
+            </div>
+            <div class="section-content">
+                <div class="block">
+                    <div class="block-title">
+                        Grader
+                    </div>
+                    <div class="block-subtitle">
+                        Jan 2020 - Now | Database Management System | EECS 484 UMich
+                    </div>
+                    <div class="block-content">
+                        <p>Grade weekly assignments online, provide feedbacks and response to regrade requests.</p>
+                        
+                </div>
+              
+                <div class="block">
+                    <div class="block-title">
+                        Peer Tutor
+                    </div>
+                    <div class="block-subtitle">
+                        Jan 2018 - March 2019 | Linear Algebra | MATH 217 UMich
+                    </div>
+                    <div class="block-content">
+                        <p>Go over course materials, assignments and exams on weekly basis. Assign supplementary problems to assist comprehending key knowledge points.</p>
+                    </div>
+                </div>  
+            </div>
+        </section>
 
-    <p>Hi, I am <strong>Baiying Qiu</strong>，you can call me <strong>BY</strong>. I am an iOS software engineer and currently working in Xiamen</p>
+        <section id="contact-info">
+            <div class="section-title">
+                Contact
+            </div>
+            <div class="section-content">
+                <div class="block">
+                    <div class="block-content">
+                        <div class="contact-item">
+                            <i class="fa fa-phone-square aria-hidden=" true=""></i> +1 (734)-7735-275
+                        </div>
+                        <div class="contact-item">
+                            <a href="mailto:ztr@umich.edu">
+                            <i class="fa fa-envelope aria-hidden=" true=""></i> ztr@umich.edu
+                            </a>
+                        </div>
+                        <div class="contact-item">
+                            <a href="https://zhangtianrong.github.io/">
+                            <i class="fa fa-globe aria-hidden=" true=""></i> Personal Blog
+                            </a>
+                        </div>
+                        <div class="contact-item">
+                            <a href="https://github.com/zhangtianrong/">
+                            <i class="fa fa-github aria-hidden=" true=""></i> GitHub Profile
+                            </a>
+                        </div>  
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
 
-    <p>This is my personal blog, through making Github Pages and Jekyll.My GitHub  👉 <a href="http://github.com/qiubaiying">Github·BY</a>.</p>
-    
-    <p>I am a sports enthusiast, I like fitness, running and boxing.</p>
+    <!-- English Version -->
+    <div class="en post-container">
+        <h2><img src="../img/profile-img.JPG"></h2>
+        <p>I am a Bachelor in Computer Science and Electrical and Computer Engineering. I received my degrees from University of Michigan and Shanghai Jiao Tong University. My current research interest is in Natural Language Processing, with a focus on language grounding. This area of research also include topics like situated language and emergence of language.</p>
+        <h2>Education</h2>
+        <h4>University of Michigan</h4>
+        <h4>Shanghai Jiao Tong University</h4>
+    </div>
 
-    <h5>Talks</h5>
-
-    <ul>
-    <li><a href="https://github.com">GitHub</a></li>
-    <li><a href="http://jekyll.com.cn/">jekyll</a></li>
-    <li><a href="https://pages.github.com/">GitHub Pages</a></li>
-    <li><a href="https://qiubaiying.github.io">BY</a></li>
-    </ul>
-</div>
 </div>
 </div>
 <!-- Handle Language Change -->
@@ -144,5 +270,249 @@ header-img: "img/tag-bg.jpg"
     // init
     _render();
 </script>
+
+<!-- Language Select Box animation for both desktop and mobile browsers -->
+<script type="text/javascript">
+    var isMobile = false;
+    window.onload = function() {
+        if( navigator.userAgent.match(/Android/i)
+        || navigator.userAgent.match(/webOS/i)
+        || navigator.userAgent.match(/iPhone/i)
+        || navigator.userAgent.match(/iPad/i)
+        || navigator.userAgent.match(/iPod/i)
+        || navigator.userAgent.match(/BlackBerry/i)
+        || navigator.userAgent.match(/Windows Phone/i)
+        ){  // In mobile mode, the language select box appears only when the page is scrolled to top
+            document.getElementById('profile_title').innerHTML = "Tianrong Zhang";
+            document.getElementById("img-replace").style.display = "inline";
+            document.getElementsByClassName("lan-changer")[0].style.display = "block";
+            document.getElementsByClassName("lan-changer")[0].style.height="30px"; 
+            document.addEventListener("scroll",function () {  
+                var scrolllenth=document.getElementById("profile_title").getBoundingClientRect().top;
+                if (scrolllenth >= 70)
+                    document.getElementsByClassName("lan-changer")[0].style.opacity=1; 
+                else if (scrolllenth < 70 && scrolllenth > -100)
+                    {
+                        document.getElementsByClassName("lan-changer")[0].style.opacity=1+(scrolllenth-70)/170;
+                        document.getElementsByClassName("lan-changer")[0].style.height="" + (30*(0.5-Math.cos(Math.PI*(1+(scrolllenth-70)/170))/2)) +"px"; 
+                    }
+                else
+                document.getElementsByClassName("lan-changer")[0].style.opacity=0;})
+        }else{
+            // In desktop mode, the language select box appears only when hovered over
+            document.getElementById('profile_title').innerHTML = "Tianrong Zhang | 张天容";
+            document.getElementById("img").style.display = "inline";
+            css = ".lan-changer { height:0px; opacity: 0; transition: height .45s ease-in-out, opacity 1s ease-in-out; -moz-transition: height .45s ease-in-out, opacity 1s ease-in-out; -webkit-transition: height .45s ease-in-out, opacity 1s ease-in-out;} .lan-changer:hover {opacity: 1; height: 30px}";
+            var style = document.createElement('style');
+            if (style.styleSheet) {
+                style.styleSheet.cssText = css;
+            } else {
+                style.appendChild(document.createTextNode(css));
+            }
+            document.getElementsByTagName('head')[0].appendChild(style);
+            document.getElementsByClassName("lan-changer")[0].style.display = "block";
+        }
+    };
+    
+</script>
+
+<style>
+html{
+    width:100%;
+    font-size:16px
+    }
+body{
+    text-align:center;
+    width:100%;
+    -webkit-font-smoothing:antialiased;
+    font-size:1rem;
+    margin:0;
+    color:#495057;
+    background-color:#fff
+    }
+p{
+    margin: 0em 0em 0.45em;
+}
+ul {
+    margin-bottom: 0em !important;
+}
+ul.course-list {
+  columns: 2;
+  -webkit-columns: 2;
+  -moz-columns: 2;
+}
+.project-item-odd {
+    background-color: #eff0f1;
+    font-family: Consolas;
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-top: 0.1em;
+    padding-bottom: 0.2em;
+}
+.project-title {
+    margin: 0em 0em 0em;
+}
+.project-author {
+    margin-bottom: 0.5rem;
+    font-style: italic;
+}
+a{
+    text-decoration:none;
+    color:inherit
+    }
+.block-title > a {
+    color: black !important;
+}
+a:hover{
+    text-decoration:underline
+    }
+.c_container{
+    margin-left:auto;
+    margin-right:auto;
+    margin-bottom:1rem;
+    max-width:48rem;
+    text-align:left}
+@media screen and (max-width: 48rem){
+    html{
+        font-size:12px
+        }
+    .c_container{
+        padding-left:.4rem;
+        padding-right:.4rem
+        }
+    }
+@media print{
+    html{
+        font-size:12px
+        }
+    .print{
+        display:none
+        }
+    }
+header{
+    display:flex;
+    justify-content:space-between;
+    border-bottom:0.1rem solid #adb5bd;
+    padding-top:2.2rem;
+    padding-bottom:2.2rem
+    }
+.name-wrapper{
+    padding-top:1rem;
+    padding-bottom:1rem
+    }
+.title{
+    font-size:2.2rem
+    }
+.sub-title{
+    font-size:1.2rem;
+    margin-top:.8rem
+    }
+.contact{
+    font-size:1rem;
+    padding-top:1rem
+    }
+.contact-item{
+    margin-top:.4rem
+    }
+.contact-item:nth-child(1){
+    margin-top:0
+    }
+.contact-item:a{
+    color:inherit;
+    text-decoration:none}
+@media screen and (max-width: 48rem){
+    header{
+        display:block;
+        padding-bottom:1rem
+        }
+    .name-wrapper{
+        text-align:center;
+        padding-bottom:2rem
+    }
+    .contact{
+        padding-top:1rem;
+        border-top:0.1rem solid #adb5bd
+    }
+    .contact-item{
+        padding-top:.2rem;
+        padding-left:.4rem
+        }
+    }
+section{
+    display:flex;
+    padding-top:2.4rem;
+    padding-bottom:2.4rem;
+    padding-left:.2rem;
+    border-bottom:0.1rem solid #adb5bd;
+    hyphens:auto
+    }
+.section-title{
+    font-size:1.75rem;
+    text-align:left;
+    min-width:10rem;
+    font-family: DFPRareBook, 'Times New Roman', Times, serif;
+    }
+.section-flex{
+    display:flex;
+    flex-wrap:wrap
+}
+.block{
+    margin-bottom:2rem
+    }
+.block:last-child{
+    margin-bottom:0
+    }
+.block-square{
+    width:18rem
+    }
+.block-square:nth-last-child(2){
+    margin-bottom:0
+    }
+.block-title{
+    font-size:1.2rem;
+    margin-bottom:0rem;
+    font-weight:bold
+    }
+.block-subtitle{
+    font-size:1rem;
+    margin-bottom:0.25rem;
+    color:#adb5bd;
+    font-family: 'Times New Roman', Times, serif;
+    font-style: italic;
+    }
+.block-content{
+    font-size:0.9rem;
+    list-style: height 1.7em;
+    }
+@media screen and (max-width: 48rem){
+    section{
+        display:block;
+        padding-top:2rem;
+        padding-bottom:2rem
+        }
+    .section-title{
+        text-align:center;
+        margin-bottom:0rem
+        }
+    .section-flex{
+        display:block
+        }
+    .block-square:nth-last-child(2){margin-bottom:2rem}
+    #img {
+        display:none !important;
+    }
+    #img-replace {
+        display:inline !important;
+    }
+    }
+footer{
+    color:#adb5bd;
+    font-size:1rem;
+    min-height:3rem;
+    line-height:3rem;
+    margin-top:1rem;
+    margin-bottom:1rem
+    }
+</style>
 
 
