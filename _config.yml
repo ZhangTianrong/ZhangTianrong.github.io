@@ -96,10 +96,14 @@ service-worker: true
 # Friends
 friends: [
     {
-        title: "邓珺玮|Junwei Deng",
+        title: "邓珺玮|Junwei Deng (Academic Profile)",
         href: "https://theaperdeng.github.io/"
     },{
-        title: "Theaper Deng",
+        title: "Theaper Deng (Blog)",
         href: "https://theaperdeng.wordpress.com/"
+    },
+    {
+      title: "张天容|Tianrong Zhang (Academic Profile)",
+      href: "https://zhangtianrong.github.io/profile/"
     }
 ]
