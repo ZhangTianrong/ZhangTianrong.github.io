@@ -53,3 +53,15 @@
     <!-- ga & ba script hoook -->
     <script></script>
 </head>
+
+<!-- Hide scroll bar in webkit browsers -->
+<style>
+html {
+    overflow: scroll;
+    overflow-x: hidden;
+}
+::-webkit-scrollbar {
+    width: 0px;  /* Remove scrollbar space */
+    background: transparent;  /* Optional: just make scrollbar invisible */
+}
+</style>
