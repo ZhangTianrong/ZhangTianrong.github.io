@@ -1,4 +1,14 @@
-## 如何在 Windows Linux 双系统下公用低能耗蓝牙设备
+---
+layout:         post
+title:          如何在 Windows Linux 双系统下公用低能耗蓝牙设备
+subtitle:       How to pair a Low Energy (LE) Bluetooth device in dual boot with Windows & Linux
+date:           2020-05-18
+author:        Miangu
+catalog:       false
+tags:
+    - Translation
+	- Tutorial
+---
 
 > 本文翻译并转载自 [console.systems](https://console.systems/2014/09/how-to-pair-low-energy-le-bluetooth.html)，是一篇相当旧（2014年写的）的文章了，但是鉴于中文网站上搜索到的大多不是针对低能耗蓝牙设备的教程，频繁提到修改 `LinkKey` 即可，但是实际上却根本找不到对应密钥，特翻译于此。
 
@@ -7,13 +17,13 @@
 首先在 Debian 下和蓝牙设备配对，再重启进入 Windows 也完成配对。当然这样你在 Debian 下的配对就失效了，这很正常，不要紧（译者注：目的是在两个操作系统中都留下配对记录，方便后续修改）。然后我们就需要在 Windows 中提取蓝牙配对的密钥。先下载微软官方的 [PsExec](https://docs.microsoft.com/en-us/sysinternals/downloads/psexec) 工具，然后用管理员权限打开一个命令行窗口（译者注：假设你将可执行文件解压缩至 `Downloads` 文件夹下，那么）
 
 ```powershell
-> cd Downloads
-> psexec.exe -s -i regedit /e C:\BTKeys.reg HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\BTHPORT\Parameters\Keys
+cd Downloads
+psexec.exe -s -i regedit /e C:\BTKeys.reg HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\BTHPORT\Parameters\Keys
 ```
 
 然后密钥就会被提取到 `C:\BTKeys.reg` 中，形如
 
-```
+```ini
 Windows Registry Editor Version 5.00
 
 [HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\BTHPORT\Parameters\Keys\7512a3185b2c\84abd4a25ee1]
