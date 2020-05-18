@@ -7,7 +7,6 @@ author:        Miangu
 catalog:       false
 tags:
     - Translation
-	- Tutorial
 ---
 
 > 本文翻译并转载自 [console.systems](https://console.systems/2014/09/how-to-pair-low-energy-le-bluetooth.html)，是一篇相当旧（2014年写的）的文章了，但是鉴于中文网站上搜索到的大多不是针对低能耗蓝牙设备的教程，频繁提到修改 `LinkKey` 即可，但是实际上却根本找不到对应密钥，特翻译于此。
