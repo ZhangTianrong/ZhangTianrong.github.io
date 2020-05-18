@@ -33,7 +33,7 @@ Windows Registry Editor Version 5.00
 "CSRK"=hex:38,d7,aa,c1,42,06,31,25,12,b8,5a,6d,c3,90,98,f2
 ```
 
-（译者注：译者未使用上述命令，使用的是 `PsExec.exe -s -i regedit` 打开注册表编辑器，再通过地址栏导航至 <a val="HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\BTHPORT\Parameters\Keys\" id="toCopy" onclick="copyText()">该地址（点击复制）</a>。自行找到对应蓝牙设备后导出。地址和原文中给出的略有不同，如原文方法无效，可尝试换成这里的地址）
+（译者注：译者未使用上述命令，使用的是 `PsExec.exe -s -i regedit` 打开注册表编辑器，再通过地址栏导航至 <a val="HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\BTHPORT\Parameters\Keys\" id="toCopy" onclick="copyText()" title="点击复制：HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\BTHPORT\Parameters\Keys\">该地址</a>。自行找到对应蓝牙设备后导出。地址和原文中给出的略有不同，如原文方法无效，可尝试换成这里的地址）
 
 这里 `7512a3185b2c` 是电脑蓝牙适配器的蓝牙 MAC 地址，写作标准形式就是 `75:12:A3:18:5B:2C`。`84abd4a25ee1` 则是配对中蓝牙鼠标被分配的地址。在后续过程中我们会继续用到它们。
 
