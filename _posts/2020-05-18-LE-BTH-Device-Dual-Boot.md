@@ -16,7 +16,7 @@ tags:
 首先在 Debian 下和蓝牙设备配对，再重启进入 Windows 也完成配对。当然这样你在 Debian 下的配对就失效了，这很正常，不要紧（译者注：目的是在两个操作系统中都留下配对记录，方便后续修改）。然后我们就需要在 Windows 中提取蓝牙配对的密钥。先下载微软官方的 [PsExec](https://docs.microsoft.com/en-us/sysinternals/downloads/psexec) 工具，然后用管理员权限打开一个命令行窗口（译者注：假设你将可执行文件解压缩至 `Downloads` 文件夹下，那么）
 
 ```powershell
-cd Downloads
+cd Downloads 
 psexec.exe -s -i regedit /e C:\BTKeys.reg HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\BTHPORT\Parameters\Keys
 ```
 
@@ -33,7 +33,7 @@ Windows Registry Editor Version 5.00
 "CSRK"=hex:38,d7,aa,c1,42,06,31,25,12,b8,5a,6d,c3,90,98,f2
 ```
 
-（译者注：译者未使用上述命令，使用的是 `PsExec.exe -s -i regedit` 打开注册表编辑器，再通过地址栏导航至 `HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\BTHPORT\Parameters\Keys\`。自行找到对应蓝牙设备后导出。地址和原文中给出的略有不同，如原文方法无效，可尝试换成这里的地址）
+（译者注：译者未使用上述命令，使用的是 `PsExec.exe -s -i regedit` 打开注册表编辑器，再通过地址栏导航至 <a val="HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\BTHPORT\Parameters\Keys\" id="toCopy" onclick="copyText()">该地址（点击复制）</a>。自行找到对应蓝牙设备后导出。地址和原文中给出的略有不同，如原文方法无效，可尝试换成这里的地址）
 
 这里 `7512a3185b2c` 是电脑蓝牙适配器的蓝牙 MAC 地址，写作标准形式就是 `75:12:A3:18:5B:2C`。`84abd4a25ee1` 则是配对中蓝牙鼠标被分配的地址。在后续过程中我们会继续用到它们。
 
