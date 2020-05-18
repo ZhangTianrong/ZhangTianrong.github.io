@@ -15,14 +15,14 @@ tags:
 
 首先在 Debian 下和蓝牙设备配对，再重启进入 Windows 也完成配对。当然这样你在 Debian 下的配对就失效了，这很正常，不要紧（译者注：目的是在两个操作系统中都留下配对记录，方便后续修改）。然后我们就需要在 Windows 中提取蓝牙配对的密钥。先下载微软官方的 [PsExec](https://docs.microsoft.com/en-us/sysinternals/downloads/psexec) 工具，然后用管理员权限打开一个命令行窗口（译者注：假设你将可执行文件解压缩至 `Downloads` 文件夹下，那么）
 
-```powershell
-cd Downloads 
+```
+cd Downloads
 psexec.exe -s -i regedit /e C:\BTKeys.reg HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\BTHPORT\Parameters\Keys
 ```
 
 然后密钥就会被提取到 `C:\BTKeys.reg` 中，形如
 
-```ini
+```
 Windows Registry Editor Version 5.00
 
 [HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\BTHPORT\Parameters\Keys\7512a3185b2c\84abd4a25ee1]
@@ -41,8 +41,7 @@ Windows Registry Editor Version 5.00
 
 ```bash
 $ cd /var/lib/bluetooth/75:12:A3:18:5B:2C/
-$ ls
-cache 84:AB:D4:A2:5F:E1 settings
+$ ls # cache 84:AB:D4:A2:5F:E1 settings
 ```
 
 仔细观察一下，你就会发现鼠标的地址和 Windows 下的不完全相同。我这边的例子里只有第五部分有区别，我们只要重命名这个文件夹就可以让地址重更新匹配。
@@ -50,8 +49,7 @@ cache 84:AB:D4:A2:5F:E1 settings
 ```bash
 $ mv 84:AB:D4:A2:{5F,5E}:E1
 $ cd 84:AB:D4:A2:5E:E1/
-$ ls
-attributes gatt info
+$ ls # attributes gatt info
 ```
 
 然后我们打开 `info` 文件进行编辑，把其中的几个密钥更新为 Windows 下我们所提取的值。Windows 和 Bluez （译者注：Linux 操作系统使用的蓝牙栈）使用的密钥格式有一下对应关系：
