@@ -69,3 +69,16 @@ html {
 
 <!-- Horizontal scroll for code block -->
 <script src="{{ "/js/hscroll.min.js " | prepend: site.baseurl }}" defer></script>
+
+<!-- Insert whitespace between Chinese and English -->
+<script>
+(function(u, c) {
+  var d = document, t = 'script', o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+  o.src = u;
+  if (c) { o.addEventListener('load', function(e) { c(e); }); }
+  s.parentNode.insertBefore(o, s);
+})('//cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js', function() {
+  pangu.spacingPage();
+});
+</script>
