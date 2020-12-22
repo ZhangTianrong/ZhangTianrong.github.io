@@ -15,6 +15,10 @@
 
     {% include footer.html %}
 
+<!-- Live2D -->
+{% if page.live2d %}
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"right","width":200,"height":400},"mobile":{"show":true, "scale":0.8},"log":false});</script></body>
+{% endif %}
 
 <!-- Image to hack wechat -->
 <img src="/img/apple-touch-icon.png" width="0" height="0" />
