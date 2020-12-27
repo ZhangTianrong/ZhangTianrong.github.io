@@ -62,22 +62,17 @@ drive.mount(mountpoint, force_remount=True)
 
 我们往往不希望下载打断CoLab中其他cell正常运行，而且每次下载的具体细节设置写在命令里调整总是很麻烦的，所以可以尝试运行portmap daemon然后通过Web管理界面控制后台运行的`aria2`。这就需要进行内网穿透，顺便还可以通过`ssh`端口转发像自己平时使用`aria2`一样操作。
 
-大概像我这样不习惯拿Jupyter notebook码代码于是想办法`ssh`进熟悉的终端的大有人在，相关代码也很容易搜索到，比如[这里](https://github.com/shawwn/colab-tricks)。我们照搬过来即可。
+大概像我这样不习惯拿Jupyter notebook码代码于是想办法`ssh`进熟悉的终端的大有人在，相关代码也很容易搜索到，比如[这里](https://github.com/shawwn/colab-tricks)。我们稍加修改后照搬过来即可。
 
 ```sh
 import random, string, urllib.request, json, getpass
 
-# Generate root password
 password = ''.join(random.choice(string.ascii_letters + string.digits) for i in range(20))
 
-# Download ngrok
 ! wget -q -c -nc https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip
 ! unzip -qq -n ngrok-stable-linux-amd64.zip
-
-# Setup sshd
 ! apt-get install -qq -o=Dpkg::Use-Pty=0 openssh-server pwgen > /dev/null
 
-# Set root password
 ! echo root:$password | chpasswd
 ! mkdir -p /var/run/sshd
 ! echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
@@ -85,28 +80,19 @@ password = ''.join(random.choice(string.ascii_letters + string.digits) for i in 
 ! echo "LD_LIBRARY_PATH=/usr/lib64-nvidia" >> /root/.bashrc
 ! echo "export LD_LIBRARY_PATH" >> /root/.bashrc
 
-# Add X11 forwarding support
-! echo "X11Forwarding yes" >> /etc/ssh/sshd_config
-! echo "X11UseLocalhost no" >> /etc/ssh/sshd_config
-
-# Run sshd
 get_ipython().system_raw('/usr/sbin/sshd -D &')
 
-# Ask token
 print("Copy authtoken from https://dashboard.ngrok.com/auth")
 authtoken = getpass.getpass()
 
-# Create tunnel
 get_ipython().system_raw('./ngrok authtoken $authtoken && ./ngrok tcp 22 &')
 
-# Get public address and print connect command
 with urllib.request.urlopen('http://localhost:4040/api/tunnels') as response:
   data = json.loads(response.read().decode())
   (host, port) = data['tunnels'][0]['public_url'][6:].split(':')
   print("Please connect to the VM through the following command:")
   print(f'ssh "{host}" -p "{port}" -L 8080:localhost:80 -L 6800:localhost:6800 -l "root"')
 
-# Print root password
 print(f'Root password: {password}')
 ```
 这段代码会安装`ngrok`来进行内网穿透，它会提示用户从`ngrok`的dashboard获取认证码，点击链接照做即可。还没有注册账户的可以注册一个，毕竟也是相当实用的工具。
@@ -163,10 +149,7 @@ save_path = input("Enter the path to the file to peek (you can find it in the le
 compressed_path = "/content/result_compressed.mp4"
 
 os.system(f"ffmpeg -i {save_path} -ss 00:00:30 -to 00:01:00 -strict -2 -vcodec libx264 -acodec copy {compressed_path}")
-print("Compression finished")
 
-print(r"If no video shown. Please download /content/result_compressed.mp4 " + 
-      "from the left panel and verify it locally.")
 mp4 = open(compressed_path,'rb').read()
 data_url = "data:video/mp4;base64," + b64encode(mp4).decode()
 HTML("""
