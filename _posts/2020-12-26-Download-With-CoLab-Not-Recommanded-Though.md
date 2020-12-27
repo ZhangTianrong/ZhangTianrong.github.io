@@ -131,9 +131,7 @@ os.system(f"aria2c --enable-rpc --rpc-listen-all -d /content/drive/MyDrive/Downl
 
 > "The file contains 10674.095 megabytes which exceeds the maximum 500 megabytes."
 
-这还只是最小的几个文件啊！！！
-
-时间就是这么一点点浪费掉的。
+这还只是最小的几个文件啊！！！ 所以，***时间就是这么一点点浪费掉的。***
 
 #### CoLab 预览视频
 
