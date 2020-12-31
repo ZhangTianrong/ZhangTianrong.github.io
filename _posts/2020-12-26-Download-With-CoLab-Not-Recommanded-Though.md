@@ -2,14 +2,16 @@
 layout:         post
 title:          用CoLab离线下载（不提倡）
 subtitle:       Not a practice of honor, but it can be really helpful.
-date:           2020-12-26
+date:           2020-12-31
 author:        Miangu
 catalog:       true
 tags:
     - Econnoisseur
 ---
 
-这个标签下的文章基本都是些薅羊毛的奇技淫巧，说实话这么做多多少少是不光彩的，免费的工具摆在那里还是应当尽量按照其原本的设计意图使用。不过毕竟方便，所以到了有需要的时候，真香定律永远适用。这次的内容一点也不复杂，都是一些发掘薅羊毛姿势时遇到的小问题，太长不看的可以打开<a href="https://colab.research.google.com/github/ZhangTianrong/TextDepository/blob/master/RemoteConnection.ipynb" target="_parent">这个CoLab Notebook</a>，里面的注释还算挺全面的，应该属于看了就懂的类型。
+> **Edit**: 没想到刚码完不久就要更新……原本使用Ngrok的方法被证实不稳定，现已更新使用Cloudflared代替的选项。CoLab notebook地址不变，更新了内容的同时使用form重写了交互界面。~~于是就更没有必要看这篇文章了……~~
+
+这个标签下的文章基本都是些薅羊毛的奇技淫巧，说实话这么做多多少少是不光彩的，免费的工具摆在那里还是应当尽量按照其原本的设计意图使用。不过毕竟方便，所以到了有需要的时候，真香定律永远适用。这次的内容一点也不复杂，都是一些发掘薅羊毛姿势时遇到的小问题，所给出的代码只是最小能够实现所需功能的代码，一些辅助使用和增强的代码则被省略了，注释和空行也进行了删减来使文章更加紧凑，太长不看的可以直接打开该Colab notebook[![](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/assets/colab-badge.svg)使用，里面的注释还算挺全面的，应该属于看了就懂的类型。
 
 ## 背景
 
@@ -21,7 +23,7 @@ mountpoint = '/content/drive'
 drive.mount(mountpoint, force_remount=True)
 ```
 
-挂载后的FuseFS使用起来就像本地磁盘一样，文件随用随取地cache到本地，新文件和修改操作也会在一段时间后sync到网盘，这样下载一次数据集就可以反复使用，训练进度也可以有效备份。而这恰好也能够完成离线下载的任务。
+挂载后的FuseFS使用起来就像本地磁盘一样，文件随用随取地cache到本地，新文件和修改操作也会在一段时间后sync到网盘，这样下载一次数据集就可以反复使用，训练进度也可以有效备份。而这恰好也能够用来完成离线下载的任务。
 
 ## 安装并使用Aria2
 
@@ -37,7 +39,7 @@ drive.mount(mountpoint, force_remount=True)
 ```python
 with open("/content/download_list", "w+") as f:
   while True:
-      magnet_link = input("Enter Magnet Link Or Type Exit: ")
+      magnet_link = input("Enter Link Or Type Exit: ")
       if magnet_link.lower() == "exit":
           break
       print(magnet_link, end="\n\n", file=f)
@@ -62,50 +64,63 @@ drive.mount(mountpoint, force_remount=True)
 
 我们往往不希望下载打断CoLab中其他cell正常运行，而且每次下载的具体细节设置写在命令里调整总是很麻烦的，所以可以尝试运行portmap daemon然后通过Web管理界面控制后台运行的`aria2`。这就需要进行内网穿透，顺便还可以通过`ssh`端口转发像自己平时使用`aria2`一样操作。
 
+> **Edit**: 以下使用Ngrok的部分有可能失效，请尝试使用Cloudflared代替：
+> ```sh
+> !pip install colab_ssh --upgrade
+> ```
+> ```python
+> from colab_ssh import launch_ssh_cloudflared, init_git_cloudflared
+> launch_ssh_cloudflared("passwd")
+> ```
+> 该包已经提供了后续本地机器设置的步骤，为了方便不熟悉英语的读者，这里简单总结一下：
+> 1. 点击显示的超链接并下载`Cloudflared`，下载所得为一个压缩包，请解压到一个常用位置
+> 2. 打开用户目录下的`.ssh`文件夹（如果没有哦安装`open-ssh`请参考比如[这个博客](https://blog.csdn.net/weixin_43064185/article/details/90080815)的步骤进行安装~~话说之前Ngrok方法似乎也要安装`ssh`来着，算了~~）。
+> 3. 用文本编辑器打开`config`文件（没有则新建）并在最后新增以下内容：
+> ```
+> Host *.trycloudflare.com
+>	  HostName %h
+>	  User root
+>	  Port 22
+>	  ProxyCommand [方才解压所得可执行文件的绝对路径] access ssh --hostname %h
+> ```
+> 4. 使用notebook中显示的地址连接，若要进行端口映射，和之前一样在最后跟上`-L 8080:localhost:80 -L 6800:localhost:6800`即可。
+>
+> 注意：上述1~3步在任意一台本地机器上只需执行一次，属于一劳永逸的事。
+
 大概像我这样不习惯拿Jupyter notebook码代码于是想办法`ssh`进熟悉的终端的大有人在，相关代码也很容易搜索到，比如[这里](https://github.com/shawwn/colab-tricks)。我们稍加修改后照搬过来即可。
 
 ```sh
-import random, string, urllib.request, json, getpass
-
-password = ''.join(random.choice(string.ascii_letters + string.digits) for i in range(20))
-
 ! wget -q -c -nc https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip
 ! unzip -qq -n ngrok-stable-linux-amd64.zip
 ! apt-get install -qq -o=Dpkg::Use-Pty=0 openssh-server pwgen > /dev/null
-
-! echo root:$password | chpasswd
+! echo root:passwd | chpasswd
 ! mkdir -p /var/run/sshd
 ! echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
 ! echo "PasswordAuthentication yes" >> /etc/ssh/sshd_config
 ! echo "LD_LIBRARY_PATH=/usr/lib64-nvidia" >> /root/.bashrc
 ! echo "export LD_LIBRARY_PATH" >> /root/.bashrc
-
 get_ipython().system_raw('/usr/sbin/sshd -D &')
-
 print("Copy authtoken from https://dashboard.ngrok.com/auth")
 authtoken = getpass.getpass()
-
 get_ipython().system_raw('./ngrok authtoken $authtoken && ./ngrok tcp 22 &')
-
 with urllib.request.urlopen('http://localhost:4040/api/tunnels') as response:
   data = json.loads(response.read().decode())
   (host, port) = data['tunnels'][0]['public_url'][6:].split(':')
-  print("Please connect to the VM through the following command:")
   print(f'ssh "{host}" -p "{port}" -L 8080:localhost:80 -L 6800:localhost:6800 -l "root"')
-
-print(f'Root password: {password}')
 ```
 这段代码会安装`ngrok`来进行内网穿透，它会提示用户从`ngrok`的dashboard获取认证码，点击链接照做即可。还没有注册账户的可以注册一个，毕竟也是相当实用的工具。
 
-运行后会打印出`ssh`登录所需的命令和随机生成的登录密码，如果报错，resubmit，一般来说就没问题了。复制进终端运行不要关闭，那么local port forwarding就生效了。
+运行后会打印出`ssh`登录所需的命令，使用密码`passwd`登录即可，如果报错，resubmit，一般来说就没问题了。复制进终端运行不要关闭，那么local port forwarding就生效了。
 
 ```python
-os.system(f"aria2c --enable-rpc --rpc-listen-all -d /content/drive/MyDrive/Downloads/ --disable-ipv6 --rpc-secret={password} --max-concurrent-downloads=10 --max-connection-per-server=10 --min-split-size=10M --split=5  --bt-tracker=$(sed ':a;N;$!ba;s/\n\n/,/g' /content/tracker) --bt-enable-lpd=true --rpc-allow-origin-all --file-allocation=none --seed-time=300 -D")
+os.system(f"aria2c --enable-rpc --rpc-listen-all -d /content/drive/MyDrive/Downloads/ --disable-ipv6 --rpc-secret=passwd --max-concurrent-downloads=10 --max-connection-per-server=10 --min-split-size=10M --split=5  --bt-tracker=$(sed ':a;N;$!ba;s/\n\n/,/g' /content/tracker) --bt-enable-lpd=true --rpc-allow-origin-all --file-allocation=none --seed-time=300 -D")
 ```
 
-开启daemon，然后我们就可以通过Web界面，比如[ariaNg](http://ariang.mayswind.net/latest/)来控制下载了。这里选择了[Aria2 for Chrome](https://chrome.google.com/webstore/detail/aria2-for-chrome/mpkodccbngfoacfalldjimigbofkhgjn)这个插件，因为可以方便的捕捉浏览器的下载请求：进入插件的设置，填入`http://127.0.0.1:6800/jsonrpc`和密码，勾选auto capture并选择一个合适的文件大小门槛，最后保存即可。
+开启daemon，然后我们就可以通过Web界面，比如[ariaNg](http://ariang.mayswind.net/latest/)来控制下载了。这里选择了[Aria2 for Chrome](https://chrome.google.com/webstore/detail/aria2-for-chrome/mpkodccbngfoacfalldjimigbofkhgjn)这个插件，因为可以方便的捕捉浏览器的下载请求：进入插件的设置，填入`http://127.0.0.1:6800/jsonrpc`和密码`passwd`，勾选auto capture并选择一个合适的文件大小门槛，最后保存即可。
 
 ## 用例：OneDrive
+
+> **Edit**: 实测使用Edge Chromium的同一插件[Aria2 for Edge](https://microsoftedge.microsoft.com/addons/detail/aria2-for-edge/jjfgljkjddpcpfapejfkelkbjbehagbh)可以自动捕捉请求头。我还想怎么可能这么火的插件连自动填写请求头都做不到呢。原来罪在Chrome，这也促使了我向Edge转移，此后也会在`box-start`标签下更新使用浏览器的一些心得和技巧。
 
 这里以下载Onedrive for Business的文件为例，说明一下使用上的细节。这些其实是适用于所有`aria2`的而不限于CoLab。进入Onedrive的网页端，选择一个超过刚才设置的大小的文件下载，下载链接会被直接传送到ariaNg，但是直接下载却会失败。这是因为这种下载需要检查`cookie`，`user-agent`等信息来核实下载人的身份，而插件并没有捕捉到这些内容。我们需要做的就是在选项tab里补全缺失的header信息，如果所有下载都来自这个站点，也可以在左边面板的HTTP设置下全局修改。`cookie`之类的写在自定义请求头中，`user-agent`就写在自定义User Agent下。
 
@@ -143,11 +158,8 @@ from base64 import b64encode
 import os
 
 save_path = input("Enter the path to the file to peek (you can find it in the left penel): ")
-
 compressed_path = "/content/result_compressed.mp4"
-
 os.system(f"ffmpeg -i {save_path} -ss 00:00:30 -to 00:01:00 -strict -2 -vcodec libx264 -acodec copy {compressed_path}")
-
 mp4 = open(compressed_path,'rb').read()
 data_url = "data:video/mp4;base64," + b64encode(mp4).decode()
 HTML("""
