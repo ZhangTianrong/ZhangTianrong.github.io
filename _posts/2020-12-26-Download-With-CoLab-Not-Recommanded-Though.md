@@ -11,7 +11,9 @@ tags:
 
 > **Edit**: 没想到刚码完不久就要更新……原本使用Ngrok的方法被证实不稳定，现已更新使用Cloudflared代替的选项。CoLab notebook地址不变，更新了内容的同时使用form重写了交互界面。~~于是就更没有必要看这篇文章了……~~
 
-这个标签下的文章基本都是些薅羊毛的奇技淫巧，说实话这么做多多少少是不光彩的，免费的工具摆在那里还是应当尽量按照其原本的设计意图使用。不过毕竟方便，所以到了有需要的时候，真香定律永远适用。这次的内容一点也不复杂，都是一些发掘薅羊毛姿势时遇到的小问题，所给出的代码只是最小能够实现所需功能的代码，一些辅助使用和增强的代码则被省略了，注释和空行也进行了删减来使文章更加紧凑，太长不看的可以直接打开该Colab notebook[![](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/assets/colab-badge.svg)使用，里面的注释还算挺全面的，应该属于看了就懂的类型。
+这个标签下的文章基本都是些薅羊毛的奇技淫巧，说实话这么做多多少少是不光彩的，免费的工具摆在那里还是应当尽量按照其原本的设计意图使用。不过毕竟方便，所以到了有需要的时候，真香定律永远适用。这次的内容一点也不复杂，都是一些发掘薅羊毛姿势时遇到的小问题，所给出的代码只是最小能够实现所需功能的代码，一些辅助使用和增强的代码则被省略了，注释和空行也进行了删减来使文章更加紧凑，太长不看的可以点击下方"open in colab"按钮使用，里面的注释还算挺全面的，应该属于看了就懂的类型。
+
+> <a href="https://colab.research.google.com/github/ZhangTianrong/TextDepository/blob/master/RemoteConnection.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" style="zoom:125%"></a>
 
 ## 背景
 
@@ -120,7 +122,7 @@ os.system(f"aria2c --enable-rpc --rpc-listen-all -d /content/drive/MyDrive/Downl
 
 ## 用例：OneDrive
 
-> **Edit**: 实测使用Edge Chromium的同一插件[Aria2 for Edge](https://microsoftedge.microsoft.com/addons/detail/aria2-for-edge/jjfgljkjddpcpfapejfkelkbjbehagbh)可以自动捕捉请求头。我还想怎么可能这么火的插件连自动填写请求头都做不到呢。原来罪在Chrome，这也促使了我向Edge转移，此后也会在`box-start`标签下更新使用浏览器的一些心得和技巧。
+> **Edit**: 实测使用Edge Chromium的同一插件[Aria2 for Edge](https://microsoftedge.microsoft.com/addons/detail/aria2-for-edge/jjfgljkjddpcpfapejfkelkbjbehagbh)可以自动捕捉请求头。我还想怎么可能这么火的插件连自动填写请求头都做不到呢。原来罪在Chrome，这也促使了我向Edge转移，此后也会在`box-starter`标签下更新使用浏览器的一些心得和技巧。
 
 这里以下载Onedrive for Business的文件为例，说明一下使用上的细节。这些其实是适用于所有`aria2`的而不限于CoLab。进入Onedrive的网页端，选择一个超过刚才设置的大小的文件下载，下载链接会被直接传送到ariaNg，但是直接下载却会失败。这是因为这种下载需要检查`cookie`，`user-agent`等信息来核实下载人的身份，而插件并没有捕捉到这些内容。我们需要做的就是在选项tab里补全缺失的header信息，如果所有下载都来自这个站点，也可以在左边面板的HTTP设置下全局修改。`cookie`之类的写在自定义请求头中，`user-agent`就写在自定义User Agent下。
 
