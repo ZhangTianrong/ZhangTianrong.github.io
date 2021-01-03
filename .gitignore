@@ -33,6 +33,7 @@ Temporary Items
 
 # debug file
 _site
+_drafts/
 
 # VScode
 .vscode/
